@@ -88,3 +88,9 @@ export const TableDataSpan = styled.span`
 `;
 
 export const LeftSection = styled.div``;
+
+export const ErrorMessage = styled.h2`
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+`;

@@ -3,6 +3,7 @@ import {
   Container,
   Description,
   DetailSection,
+  ErrorMessage,
   Heading,
   Icon,
   LeftSection,
@@ -18,12 +19,12 @@ import {
 const WeatherDetail = ({ data }: any) => {
   const iconUrl =
     "http://openweathermap.org/img/wn/" +
-    `${data.cod !== 404 ? data.weather[0].icon : null}` +
+    `${data.cod !== "404" ? data.weather[0].icon : null}` +
     ".png";
 
   return (
     <Container>
-      {data.cod !== 404 ? (
+      {data.cod !== "404" ? (
         <>
           <WrapperMain>
             <MainCardTitle>
@@ -156,7 +157,7 @@ const WeatherDetail = ({ data }: any) => {
         </>
       ) : (
         <WrapperMain>
-          <h2>{data.message}</h2>
+          <ErrorMessage>{data.message}</ErrorMessage>
         </WrapperMain>
       )}
     </Container>
