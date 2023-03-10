@@ -45,7 +45,9 @@ const Weather = () => {
           `https://api.openweathermap.org/data/2.5/weather?q=${locationData.city},${locationData.country}&appid=${process.env.REACT_APP_API_KEY}`
         )
         .then((res) => res.data)
-        .catch((e) => console.log(e));
+        .catch((err) => {
+          alert(err.response.data.message);
+        });
 
       setWeatherData({ data: result });
     }
