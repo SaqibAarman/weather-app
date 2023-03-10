@@ -8,6 +8,7 @@ import {
   Title,
   Wrapper,
 } from "./weatherStyles";
+import axios from "axios";
 
 const Weather = () => {
   const [locationData, setLocationData] = useState({
@@ -39,11 +40,12 @@ const Weather = () => {
     } else if (locationData.country === "") {
       alert("Please Add Country!");
     } else {
-      const result = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${locationData.city},${locationData.country}&appid=${process.env.REACT_APP_API_KEY}`
-      )
-        .then((res) => res.json())
-        .then((data) => data);
+      const result = await axios
+        .get(
+          `https://api.openweathermap.org/data/2.5/weather?q=${locationData.city},${locationData.country}&appid=${process.env.REACT_APP_API_KEY}`
+        )
+        .then((res) => res.data)
+        .catch((e) => console.log(e));
 
       setWeatherData({ data: result });
     }
